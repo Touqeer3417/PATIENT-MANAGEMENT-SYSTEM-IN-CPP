@@ -284,6 +284,7 @@ void bookAppointment()
     cout << "Enter your email: ";
     cin >> appEmails[appointmentCount];
 
+    // C:\Users\falcon\Documents\GitHub\PATIENT-MANAGEMENT-SYSTEM-IN-CPP\index.cpp
     showDepartments();
     cout << "Choose department 1-5: ";
     int deptChoice;
