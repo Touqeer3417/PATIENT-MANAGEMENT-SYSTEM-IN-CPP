@@ -22,6 +22,8 @@ string appPatientNames[100];
 string appEmails[100];
 string SelectDepartments[100];
 
+//file handling
+// writng in file
 void savePatients()
 {
     ofstream file("patients.txt");
@@ -32,34 +34,6 @@ void savePatients()
     }
     file.close();
 }
-
-void loadPatients()
-{
-    ifstream file("patients.txt");
-    patientccount = 0;
-
-    while (!file.eof())
-    {
-        string name, gender, contact, disease;
-        int age;
-
-        file >> name >> age >> gender >> contact >> disease;
-
-
-        names[patientccount] = name;
-        ages[patientccount] = age;
-        genders[patientccount] = gender;
-        contactNumbers[patientccount] = contact;
-        diseases[patientccount] = disease;
-
-        patientccount++;
-
-       
-    }
-
-    file.close();
-}
-
 void saveUsers()
 {
     ofstream file("users.txt");
@@ -67,25 +41,6 @@ void saveUsers()
     {
         file << usernames[i] << " " << passwords[i] << "\n";
     }
-    file.close();
-}
-
-void loadUsers()
-{
-    ifstream file("users.txt");
-    userCount = 0;
-
-    while (!file.eof())
-    {
-        string username, password;
-        file >> username >> password;
-
-        usernames[userCount] = username;
-        passwords[userCount] = password;
-        userCount++;
-
-    }
-
     file.close();
 }
 
@@ -99,27 +54,64 @@ void saveAppointments()
     file.close();
 }
 
+
+// reading from file 
+void loadPatients()
+{
+    ifstream file("patients.txt");
+    patientccount = 0;
+
+    string name, gender, contact, disease;
+    int age;
+
+    while (file >> name >> age >> gender >> contact >> disease)
+    {
+        names[patientccount] = name;
+        ages[patientccount] = age;
+        genders[patientccount] = gender;
+        contactNumbers[patientccount] = contact;
+        diseases[patientccount] = disease;
+
+        patientccount++;
+    }
+
+    file.close();
+}
+void loadUsers()
+{
+    ifstream file("users.txt");
+    userCount = 0;
+
+    string username, password;
+    while (file >> username >> password)
+    {
+        usernames[userCount] = username;
+        passwords[userCount] = password;
+        userCount++;
+    }
+
+    file.close();
+}
 void loadAppointments()
 {
     ifstream file("appointments.txt");
     appointmentCount = 0;
 
-    while (!file.eof())
+    string name, email, department;
+    while (file >> name >> email >> department)
     {
-        string name, email, department;
-        file >> name >> email >> department;
-
         appPatientNames[appointmentCount] = name;
         appEmails[appointmentCount] = email;
         SelectDepartments[appointmentCount] = department;
         appointmentCount++;
-
-        
     }
 
     file.close();
 }
 
+
+
+// basic crud opeartion 
 void addPatient()
 {
     if (patientccount >= 100)
@@ -211,7 +203,7 @@ void deletePatient()
 
             patientccount--;
             found = false;
-            cout << "Patient recordd deleted successfully.\n";
+            cout << "Patient recordd .\n";
             break;
         }
     }
@@ -222,6 +214,7 @@ void deletePatient()
     }
 }
 
+//accounts making
 void registerUser()
 
 {
@@ -274,6 +267,8 @@ void showDepartments()
     }
     
 }
+
+//appointment
 
 void bookAppointment()
 {
@@ -389,3 +384,5 @@ int main()
     }
     return 0;
 }
+
+
