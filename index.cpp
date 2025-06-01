@@ -283,6 +283,7 @@ void bookAppointment()
 
     cout << "Enter your email: ";
     cin >> appEmails[appointmentCount];
+//HELLO WORLD
 
     // C:\Users\falcon\Documents\GitHub\PATIENT-MANAGEMENT-SYSTEM-IN-CPP\index.cpp
     showDepartments();
